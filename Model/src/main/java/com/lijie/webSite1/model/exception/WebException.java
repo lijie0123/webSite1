@@ -3,7 +3,7 @@ package com.lijie.webSite1.model.exception;
 /**
  * Created by lj on 16-3-6.
  */
-public class WebExeption extends Exception{
+public class WebException extends Exception{
     private int code;
     private String msg;
 
@@ -23,18 +23,18 @@ public class WebExeption extends Exception{
         this.msg = msg;
     }
 
-    public WebExeption(int code, String msg) {
+    public WebException(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
-    public WebExeption(int code) {
+    public WebException(int code) {
         this.code = code;
         this.msg = null;
     }
 
     @Override
     public String toString() {
-        return "WebExeption{" +
+        return "WebException{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
                 '}';

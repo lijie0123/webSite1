@@ -5,18 +5,42 @@
   Time: 上午4:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.* "%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>all</title>
 </head>
 <body>
-<p>
-    ${result}
-</p>
-<br/>
+
+<h1>已有的人</h1>
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>sex</td>
+        <td>age</td>
+        <td>desc</td>
+        <td>action</td>
+    </tr>
+    <c:forEach var="person"  items="${persons}">
+        <tr>
+                <td><input name="id" type="text" readonly="true" value="${person.id}"/></td>
+                <td>${person.name}</td>
+                <td>${person.sex}</td>
+                <td>${person.age}</td>
+                <td>${person.desc}</td>
+                <td><button onclick="location=deleteById?id=${person.name}">delete</button></td>
+
+        </tr>
+    </c:forEach>
+</table>
+
+
+<h1>添加新人</h1>
 <form action="/savePerson" method="post">
-    <table>
+    <table >
         <tr>
             <label id="idR">
                 <td><p>Id:</p></td>
@@ -47,9 +71,14 @@
                 <td><input name="desc" type="text"></td>
             </label>
         </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="add">
+            </td>
+        </tr>
 
     </table>
-    <input type="submit" content="submit">
+
 </form>
 
 </body>

@@ -2,9 +2,7 @@ package com.lijie.webSite1.controler;
 
 import com.lijie.webSite1.api.app.IPersonApi;
 import com.lijie.webSite1.api.dto.PersonDto;
-import com.lijie.webSite1.dao.impl.PersonRepo;
-import com.lijie.webSite1.dao.intr.IPersonRepo;
-import com.lijie.webSite1.model.exception.WebExeption;
+import com.lijie.webSite1.model.exception.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,39 +28,42 @@ public class WebHandler {
         return modelAndView;
     }
     @RequestMapping("savePerson")
-    public void conSavePerson(@RequestParam("id") int id, @RequestParam("name") String name,@RequestParam("sex") String sex,
+    public ModelAndView conSavePerson(@RequestParam("id") int id, @RequestParam("name") String name,@RequestParam("sex") String sex,
                               @RequestParam("age") int age, @RequestParam("desc") String desc){
         PersonDto personDto=new PersonDto(id,name,sex,age,desc);
         try{
             personApi.savePerson(personDto);
-        }catch (WebExeption e){
+        }catch (WebException e){
             System.out.println(e.toString());
             e.printStackTrace();
+            return new ModelAndView("errorPage","info",e.toString());
         }
+        return new ModelAndView("jumpToGetAll");
     }
     @RequestMapping("getAll")
     public ModelAndView conGetAll(){
-        String result=null;
+        List<PersonDto> personDtos=null;
         try{
-            result=getAllString();
-        }catch (WebExeption e){
+            personDtos=personApi.getAll();
+        }catch (WebException e){
             System.out.println(e.toString());
             e.printStackTrace();
+            return new ModelAndView("errorPage","info",e.toString());
         }
         ModelAndView modelAndView=new ModelAndView("getAll");
-        modelAndView.addObject("result",result);
+        modelAndView.addObject("persons",personDtos);
         return modelAndView;
     }
-
-    private String getAllString() throws WebExeption{
-        List<PersonDto> personDtos=null;
-        personDtos=personApi.getAll();
-        String result="";
-        if(personDtos!=null){
-            for(PersonDto personDto:personDtos){
-                result+=personDto.toString()+"\n<br/>";
-            }
+    @RequestMapping("deleteById")
+    public ModelAndView conDeleteById(@RequestParam("id") int id){
+        try{
+            personApi.deletePersonById(id);
+        }catch (WebException e){
+            System.out.println(e.toString());
+            e.printStackTrace();
+            return new ModelAndView("errorPage","info",e.toString());
         }
-        return result;
+        return new ModelAndView("jumpToGetAll");
     }
+
 }
