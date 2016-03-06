@@ -19,6 +19,11 @@
           <element id="archive" name="Model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="Model" />
           </element>
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.8.11.2" />
+          <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
+          <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2.1-b03" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.0-b01" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.5.RELEASE" />

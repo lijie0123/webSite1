@@ -26,25 +26,25 @@
         <tr>
             <label id="nameR">
                 <td><p>name:</p></td>
-                <td><input id="name" type="text"></td>
+                <td><input name="name" type="text"></td>
             </label>
         </tr>
         <tr>
             <label id="sexR">
                 <td><p>sex:</p></td>
-                <td><input id="sex" type="text"></td>
+                <td><input name="sex" type="text"></td>
             </label>
         </tr>
         <tr>
             <label id="ageR">
                 <td><p>age:</p></td>
-                <td><input id="age" type="text"></td>
+                <td><input name="age" type="text"></td>
             </label>
         </tr>
         <tr>
             <label id="descR">
                 <td><p>desc:</p></td>
-                <td><input id="desc" type="text"></td>
+                <td><input name="desc" type="text"></td>
             </label>
         </tr>
 
