@@ -19,12 +19,14 @@ public class PersonApi implements IPersonApi{
     @Autowired
     private IPersonService personService;
     public void savePerson(PersonDto personDto) throws WebExeption {
-        personService.savePerson(personDto.getId(),personDto.getName(),personDto.getSex(),personDto.getAge(),personDto.getDesc());
+        int sex=sex2int(personDto.getSex());
+        personService.savePerson(personDto.getId(),personDto.getName(),sex,personDto.getAge(),personDto.getDesc());
     }
 
     public PersonDto getPersonById(int id) throws WebExeption {
         Person person=personService.getPersonById(id);
-        PersonDto personDto=new PersonDto(person.getId(),person.getName(),person.getSex(),person.getAge(),person.getDescription());
+        String sex=sex2String(person.getSex());
+        PersonDto personDto=new PersonDto(person.getId(),person.getName(),sex,person.getAge(),person.getDescription());
         return personDto;
     }
 
@@ -33,8 +35,24 @@ public class PersonApi implements IPersonApi{
         List<Person> persons=personService.getAll();
         if(persons==null)return null;
         for(Person person:persons){
-            personDtos.add(new PersonDto(person.getId(),person.getName(),person.getSex(),person.getAge(),person.getDescription()));
+            personDtos.add(new PersonDto(person.getId(),person.getName(),sex2String(person.getSex()),person.getAge(),person.getDescription()));
         }
         return personDtos;
     }
+
+    private int sex2int(String sexString){
+        int sex=0;
+        if(sexString.equals("male"))sex=1;
+        else if(sexString.equals("female"))sex=2;
+        else sex=3;
+        return sex;
+    }
+    private String sex2String(int sexInt){
+        String sex=null;
+        if(sexInt==1)sex="male";
+        else if(sexInt==2)sex="female";
+        else sex="other";
+        return sex;
+    }
+
 }

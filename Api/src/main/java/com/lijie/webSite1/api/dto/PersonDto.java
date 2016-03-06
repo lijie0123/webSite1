@@ -6,7 +6,7 @@ package com.lijie.webSite1.api.dto;
 public class PersonDto {
     private int id;
     private String name;
-    private int sex;
+    private String sex;
     private int age;
     private String desc;
 
@@ -26,11 +26,11 @@ public class PersonDto {
         this.name = name;
     }
 
-    public int getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -53,7 +53,7 @@ public class PersonDto {
     public PersonDto() {
     }
 
-    public PersonDto(int id, String name, int sex, int age, String desc) {
+    public PersonDto(int id, String name, String sex, int age, String desc) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -67,7 +67,6 @@ public class PersonDto {
                 ", name='" + name + '\'' +
                 ", sex=" + sex +
                 ", age=" + age +
-                ", desc='" + desc + '\'' +
-                '}';
+                ", desc='" + desc + '\'' ;
     }
 }

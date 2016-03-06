@@ -23,14 +23,14 @@ public class WebHandler {
     @Autowired
     private IPersonApi personApi;
 
-    @RequestMapping("welcomPage")
+    @RequestMapping("welcomePage")
     public ModelAndView conIndex(HttpServletRequest request){
         ModelAndView modelAndView=new ModelAndView("welcome");
         modelAndView.addObject("title",request.getRequestURI());
         return modelAndView;
     }
     @RequestMapping("savePerson")
-    public String conSavePerson(@RequestParam("id") int id, @RequestParam("name") String name,@RequestParam("sex") int sex,
+    public void conSavePerson(@RequestParam("id") int id, @RequestParam("name") String name,@RequestParam("sex") String sex,
                               @RequestParam("age") int age, @RequestParam("desc") String desc){
         PersonDto personDto=new PersonDto(id,name,sex,age,desc);
         try{
@@ -39,7 +39,6 @@ public class WebHandler {
             System.out.println(e.toString());
             e.printStackTrace();
         }
-        return "getAll";
     }
     @RequestMapping("getAll")
     public ModelAndView conGetAll(){
@@ -61,7 +60,7 @@ public class WebHandler {
         String result="";
         if(personDtos!=null){
             for(PersonDto personDto:personDtos){
-                result+=personDto.toString();
+                result+=personDto.toString()+"\n<br/>";
             }
         }
         return result;

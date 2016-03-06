@@ -26,6 +26,8 @@ public class PersonRepo implements IPersonRepo {
     }
 
     public void savePerson(Person person) throws WebExeption {
+        String sqlString="insert into person(id, name, sex, age, description) values(?,?,?,?,?)";
+        jdbcTemplate.update(sqlString,person.getId(),person.getName(),person.getSex(),person.getAge(),person.getDescription());
 
     }
 
